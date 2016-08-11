@@ -9,16 +9,21 @@
 import UIKit
 
 class DrawingViewController: UIViewController {
+    
+    var colorStruct = Sticker(displayName:"", color: UIColor.blackColor())
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backgroundColor = colorStruct.color
+        view.backgroundColor = backgroundColor
 
         navigationItem.title = "My Drawing"
         
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
         navigationItem.leftItemsSupplementBackButton = true
         
-        view.backgroundColor = UIColor.purpleColor()
+        //view.backgroundColor = UIColor.purpleColor()
     }
 
 }
