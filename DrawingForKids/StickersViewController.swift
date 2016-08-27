@@ -17,7 +17,7 @@ struct Sticker {
 class StickersViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
    private let stickers = [
-    Sticker(displayName: "basketball", color: UIColor.greenColor()),
+    Sticker(displayName: "basketball", color: UIColor.rgb(100, green: 200, blue: 300)),
     Sticker(displayName: "shoe", color: UIColor.blueColor()),
     Sticker(displayName: "bicycle", color: UIColor.yellowColor()),
     Sticker(displayName: "sun", color: UIColor.purpleColor()),

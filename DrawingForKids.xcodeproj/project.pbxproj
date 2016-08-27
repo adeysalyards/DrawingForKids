@@ -15,6 +15,7 @@
 		78FA100A1D5A452200B21512 /* DrawingForKidsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA10091D5A452200B21512 /* DrawingForKidsUITests.swift */; };
 		78FA10181D5A470000B21512 /* StickersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA10171D5A470000B21512 /* StickersViewController.swift */; };
 		78FA101A1D5A470F00B21512 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA10191D5A470F00B21512 /* DrawingViewController.swift */; };
+		A0B679BD1D7114B80044AF85 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B679BC1D7114B80044AF85 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		78FA100B1D5A452200B21512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78FA10171D5A470000B21512 /* StickersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickersViewController.swift; sourceTree = "<group>"; };
 		78FA10191D5A470F00B21512 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
+		A0B679BC1D7114B80044AF85 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				78FA0FF01D5A452200B21512 /* Assets.xcassets */,
 				78FA0FF21D5A452200B21512 /* LaunchScreen.storyboard */,
 				78FA0FF51D5A452200B21512 /* Info.plist */,
+				A0B679BC1D7114B80044AF85 /* Extensions.swift */,
 			);
 			path = DrawingForKids;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				78FA101A1D5A470F00B21512 /* DrawingViewController.swift in Sources */,
 				78FA10181D5A470000B21512 /* StickersViewController.swift in Sources */,
 				78FA0FEA1D5A452200B21512 /* AppDelegate.swift in Sources */,
+				A0B679BD1D7114B80044AF85 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +492,7 @@
 				78FA10101D5A452200B21512 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78FA10111D5A452200B21512 /* Build configuration list for PBXNativeTarget "DrawingForKidsTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +501,7 @@
 				78FA10131D5A452200B21512 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78FA10141D5A452200B21512 /* Build configuration list for PBXNativeTarget "DrawingForKidsUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +510,7 @@
 				78FA10161D5A452200B21512 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

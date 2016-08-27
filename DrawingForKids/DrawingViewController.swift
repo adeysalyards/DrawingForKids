@@ -11,12 +11,16 @@ import UIKit
 class DrawingViewController: UIViewController {
     
     var colorStruct = Sticker(displayName:"", color: UIColor.blackColor())
-
+    var start: CGPoint!
+    var rgbColor: (CGFloat, CGFloat, CGFloat)!
+    
+    @IBOutlet weak var drawImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backgroundColor = colorStruct.color
-        view.backgroundColor = backgroundColor
+        let lineColor = colorStruct.color
+        drawImageView.backgroundColor = UIColor(red: 1, green: 245/255, blue: 230/255, alpha: 1)
 
         navigationItem.title = "My Drawing"
         
@@ -25,5 +29,40 @@ class DrawingViewController: UIViewController {
         
         //view.backgroundColor = UIColor.purpleColor()
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first as UITouch!
+        start = touch.locationInView(self.drawImageView)
+        
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first as UITouch!
+        let end = touch.locationInView(self.drawImageView)
+        if let s = self.start {
+            draw(s, end: end)
+        }
+        self.start = end
+    }
+    
+    func draw(start: CGPoint, end: CGPoint){
+        UIGraphicsBeginImageContext(self.drawImageView.frame.size)
+        let context = UIGraphicsGetCurrentContext()
+        drawImageView?.image?.drawInRect(CGRect(x: 0, y: 0, width: drawImageView.frame.width, height: drawImageView.frame.height))
+        
+        CGContextSetLineWidth(context, 6)
+        CGContextBeginPath(context)
+        CGContextMoveToPoint(context, start.x, start.y)
+        CGContextAddLineToPoint(context, end.x, end.y)
+//        CGContextSetRGBStrokeColor(context, red, green, blue, 1)
+        CGContextSetLineCap(context, CGLineCap.Round)
+        CGContextSetLineJoin(context, CGLineJoin.Round)
+        CGContextStrokePath(context)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        drawImageView.image = newImage
+    }
+
 
 }

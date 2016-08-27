@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Stickers View Controller-->
@@ -54,9 +55,40 @@
                     <view key="view" contentMode="scaleToFill" id="jKJ-os-IQl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TR4-EA-ap7">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="NJJ-Gy-sHC"/>
+                                    <constraint firstAttribute="height" constant="600" id="yHz-Q2-2Yx"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="NJJ-Gy-sHC"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TR4-EA-ap7" firstAttribute="leading" secondItem="jKJ-os-IQl" secondAttribute="leading" id="39U-VD-sUo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TR4-EA-ap7" secondAttribute="trailing" id="GAp-be-CEQ"/>
+                            <constraint firstItem="TR4-EA-ap7" firstAttribute="top" secondItem="jKJ-os-IQl" secondAttribute="topMargin" id="IA0-Fx-XHw"/>
+                            <constraint firstItem="TR4-EA-ap7" firstAttribute="leading" secondItem="jKJ-os-IQl" secondAttribute="leadingMargin" id="UBY-3G-mNr"/>
+                            <constraint firstItem="mCT-0s-Y4y" firstAttribute="top" secondItem="TR4-EA-ap7" secondAttribute="bottom" id="nHi-4T-lU2"/>
+                            <constraint firstAttribute="trailing" secondItem="TR4-EA-ap7" secondAttribute="trailing" id="pUT-Ep-H6u"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GAp-be-CEQ"/>
+                                <exclude reference="UBY-3G-mNr"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="2Jv-Z1-DYW"/>
+                    <connections>
+                        <outlet property="drawImageView" destination="TR4-EA-ap7" id="3ED-Ki-iBA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkJ-qE-eJA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
