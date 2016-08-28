@@ -10,16 +10,14 @@ import UIKit
 
 class DrawingViewController: UIViewController {
     
-    var colorStruct = Sticker(displayName:"", color: UIColor.blackColor())
+    var colorStruct = Sticker(displayName:"", color: UIColor.rgb(255, green: 245, blue: 230))
     var start: CGPoint!
-    var rgbColor: (CGFloat, CGFloat, CGFloat)!
-    
+    var rgbColor: (CGFloat, CGFloat, CGFloat) = (116/255, 116/255, 116/255)
     @IBOutlet weak var drawImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let lineColor = colorStruct.color
         drawImageView.backgroundColor = UIColor(red: 1, green: 245/255, blue: 230/255, alpha: 1)
 
         navigationItem.title = "My Drawing"
@@ -27,7 +25,6 @@ class DrawingViewController: UIViewController {
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
         navigationItem.leftItemsSupplementBackButton = true
         
-        //view.backgroundColor = UIColor.purpleColor()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -54,7 +51,7 @@ class DrawingViewController: UIViewController {
         CGContextBeginPath(context)
         CGContextMoveToPoint(context, start.x, start.y)
         CGContextAddLineToPoint(context, end.x, end.y)
-//        CGContextSetRGBStrokeColor(context, red, green, blue, 1)
+        CGContextSetRGBStrokeColor(context, rgbColor.0, rgbColor.1, rgbColor.2, 1)
         CGContextSetLineCap(context, CGLineCap.Round)
         CGContextSetLineJoin(context, CGLineJoin.Round)
         CGContextStrokePath(context)

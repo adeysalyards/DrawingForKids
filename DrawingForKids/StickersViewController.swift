@@ -17,17 +17,18 @@ struct Sticker {
 class StickersViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
    private let stickers = [
-    Sticker(displayName: "basketball", color: UIColor.rgb(100, green: 200, blue: 300)),
-    Sticker(displayName: "shoe", color: UIColor.blueColor()),
-    Sticker(displayName: "bicycle", color: UIColor.yellowColor()),
-    Sticker(displayName: "sun", color: UIColor.purpleColor()),
-    Sticker(displayName: "jumprope", color: UIColor.orangeColor()),
-    Sticker(displayName: "hand", color: UIColor.magentaColor()),
-    Sticker(displayName: "ear", color: UIColor.brownColor()),
-    Sticker(displayName: "milk", color: UIColor.cyanColor()),
-    Sticker(displayName: "apple", color: UIColor.redColor()),
-    Sticker(displayName: "water", color: UIColor.blackColor()),
+    Sticker(displayName: "basketball", color: UIColor.rgb(255, green: 127, blue: 127)),
+    Sticker(displayName: "shoe", color: UIColor.rgb(171, green: 107, blue: 226)),
+    Sticker(displayName: "bicycle", color: UIColor.rgb(12, green: 159, blue: 210)),
+    Sticker(displayName: "sun", color: UIColor.rgb(130, green: 211, blue: 138)),
+    Sticker(displayName: "jumprope", color: UIColor.rgb(116, green: 116, blue: 116)),
+//    Sticker(displayName: "hand", color: UIColor.magentaColor()),
+//    Sticker(displayName: "ear", color: UIColor.brownColor()),
+//    Sticker(displayName: "milk", color: UIColor.cyanColor()),
+//    Sticker(displayName: "apple", color: UIColor.redColor()),
+//    Sticker(displayName: "water", color: UIColor.blackColor()),
     ]
+    
     var selectedCell: NSIndexPath?
     
     override func viewDidLoad() {
@@ -35,7 +36,9 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
 
         navigationItem.title = "Stickers"
         
-        collectionView?.backgroundColor = UIColor.whiteColor()
+        collectionView?.backgroundColor = UIColor.rgb(97, green: 97, blue: 97)
+        
+//        collectionView?.registerClass(HeaderCellCollectionReusableView.self, forCellWithReuseIdentifier: headerId)
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -59,6 +62,13 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
         performSegueWithIdentifier("stickersSegue", sender: self)
         
     }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableCellWithReuseIdentifier("headerId", forIndexPath: indexPath) as! HeaderCellCollectionReusableView
+        headerView.backgroundColor = UIColor.rgb(130, green: 211, blue: 138)
+        return headerView
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "stickersSegue" {
             var drawingViewController: DrawingViewController!
