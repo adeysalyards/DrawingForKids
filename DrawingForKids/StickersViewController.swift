@@ -35,10 +35,8 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
         super.viewDidLoad()
 
         navigationItem.title = "Stickers"
-        
         collectionView?.backgroundColor = UIColor.rgb(97, green: 97, blue: 97)
         
-//        collectionView?.registerClass(HeaderCellCollectionReusableView.self, forCellWithReuseIdentifier: headerId)
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -62,11 +60,21 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
         performSegueWithIdentifier("stickersSegue", sender: self)
         
     }
+
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableCellWithReuseIdentifier("headerId", forIndexPath: indexPath) as! HeaderCellCollectionReusableView
-        headerView.backgroundColor = UIColor.rgb(130, green: 211, blue: 138)
-        return headerView
+        
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderCell", forIndexPath: indexPath) as! HeaderCollectionReusableView
+            header.backgroundColor = UIColor.rgb(130, green: 211, blue: 138)
+            header.squiggleImage.alpha = 0.2
+            header.backgroundForLabelView.layer.cornerRadius = 25
+            return header
+        
+        default:
+            assert(false, "Unexpected element kind")
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
