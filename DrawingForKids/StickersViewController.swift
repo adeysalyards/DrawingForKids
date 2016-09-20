@@ -10,14 +10,14 @@ import UIKit
 
 struct Sticker {
     let displayName: String
-    let image: UIImageView
+    let image: UIColor
     
 }
 
 class StickersViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
    private let stickers = [
-    Sticker(displayName: "basketball", image: basketballStickerImage),
+    Sticker(displayName: "basketball", image: UIColor.blueColor()),
 //    Sticker(displayName: "shoe", image: UIImageView),
 //    Sticker(displayName: "bicycle", color: UIColor.rgb(12, green: 159, blue: 210)),
 //    Sticker(displayName: "sun", color: UIColor.rgb(130, green: 211, blue: 138)),
