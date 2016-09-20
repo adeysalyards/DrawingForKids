@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		786293551D73965C0011A53D /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786293541D73965C0011A53D /* HeaderCollectionReusableView.swift */; };
+		78D6F7C81D90B9ED001AA2C1 /* MyCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D6F7C71D90B9ED001AA2C1 /* MyCellCollectionViewCell.swift */; };
 		78FA0FEA1D5A452200B21512 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA0FE91D5A452200B21512 /* AppDelegate.swift */; };
 		78FA0FEF1D5A452200B21512 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78FA0FED1D5A452200B21512 /* Main.storyboard */; };
 		78FA0FF11D5A452200B21512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78FA0FF01D5A452200B21512 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		786293541D73965C0011A53D /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		78D6F7C71D90B9ED001AA2C1 /* MyCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		78FA0FE61D5A452200B21512 /* DrawingForKids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingForKids.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FA0FE91D5A452200B21512 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78FA0FEE1D5A452200B21512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				78FA0FE91D5A452200B21512 /* AppDelegate.swift */,
 				78FA0FED1D5A452200B21512 /* Main.storyboard */,
+				78D6F7C71D90B9ED001AA2C1 /* MyCellCollectionViewCell.swift */,
 				786293541D73965C0011A53D /* HeaderCollectionReusableView.swift */,
 				78FA10191D5A470F00B21512 /* DrawingViewController.swift */,
 				78FA10171D5A470000B21512 /* StickersViewController.swift */,
@@ -267,6 +270,7 @@
 			files = (
 				78FA101A1D5A470F00B21512 /* DrawingViewController.swift in Sources */,
 				78FA10181D5A470000B21512 /* StickersViewController.swift in Sources */,
+				78D6F7C81D90B9ED001AA2C1 /* MyCellCollectionViewCell.swift in Sources */,
 				78FA0FEA1D5A452200B21512 /* AppDelegate.swift in Sources */,
 				786293551D73965C0011A53D /* HeaderCollectionReusableView.swift in Sources */,
 				A0B679BD1D7114B80044AF85 /* Extensions.swift in Sources */,

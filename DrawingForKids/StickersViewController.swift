@@ -10,24 +10,32 @@ import UIKit
 
 struct Sticker {
     let displayName: String
-    let color: UIColor
+    let image: UIImageView
     
 }
 
 class StickersViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
    private let stickers = [
-    Sticker(displayName: "basketball", color: UIColor.rgb(255, green: 127, blue: 127)),
-    Sticker(displayName: "shoe", color: UIColor.rgb(171, green: 107, blue: 226)),
-    Sticker(displayName: "bicycle", color: UIColor.rgb(12, green: 159, blue: 210)),
-    Sticker(displayName: "sun", color: UIColor.rgb(130, green: 211, blue: 138)),
-    Sticker(displayName: "jumprope", color: UIColor.rgb(116, green: 116, blue: 116)),
+    Sticker(displayName: "basketball", image: basketballStickerImage),
+//    Sticker(displayName: "shoe", image: UIImageView),
+//    Sticker(displayName: "bicycle", color: UIColor.rgb(12, green: 159, blue: 210)),
+//    Sticker(displayName: "sun", color: UIColor.rgb(130, green: 211, blue: 138)),
+//    Sticker(displayName: "jumprope", color: UIColor.rgb(116, green: 116, blue: 116)),
 //    Sticker(displayName: "hand", color: UIColor.magentaColor()),
 //    Sticker(displayName: "ear", color: UIColor.brownColor()),
 //    Sticker(displayName: "milk", color: UIColor.cyanColor()),
 //    Sticker(displayName: "apple", color: UIColor.redColor()),
 //    Sticker(displayName: "water", color: UIColor.blackColor()),
     ]
+    
+    var basketballStickerImage: UIImageView {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "Basketball")
+        imageView.contentMode = .ScaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }
     
     var selectedCell: NSIndexPath?
     
@@ -36,7 +44,6 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
 
         navigationItem.title = "Stickers"
         collectionView?.backgroundColor = UIColor.rgb(97, green: 97, blue: 97)
-        
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -44,11 +51,13 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MyCellCollectionViewCell
         
-        cell.backgroundColor = stickers[indexPath.row].color
+        cell.stickerImage.image = basketballStickerImage.image
         return cell
     }
+    
+    
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(view.frame.width/3, 100)
@@ -68,7 +77,15 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
         case UICollectionElementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderCell", forIndexPath: indexPath) as! HeaderCollectionReusableView
             header.backgroundColor = UIColor.rgb(130, green: 211, blue: 138)
-            header.squiggleImage.alpha = 0.2
+            
+            let squiggleImageview = UIView()
+            squiggleImageview.alpha = 0.2
+            squiggleImageview.frame = header.frame
+            let image = header.squiggleImage.image!
+            let scaled = UIImage(CGImage: image.CGImage!, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)
+            squiggleImageview.backgroundColor = UIColor(patternImage: scaled)
+            header.insertSubview(squiggleImageview, atIndex: 1)
+            
             header.backgroundForLabelView.layer.cornerRadius = 25
             return header
         
@@ -87,7 +104,7 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
                 drawingViewController.navigationItem.leftItemsSupplementBackButton = true
                 
                 let color = stickers[(selectedCell?.row)!]
-                drawingViewController.colorStruct = color
+//                drawingViewController.colorStruct = color
             } else {
                 drawingViewController = segue.destinationViewController as! DrawingViewController
             };

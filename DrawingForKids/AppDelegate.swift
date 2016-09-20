@@ -12,10 +12,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        window?.makeKeyWindow()
+        
+        UINavigationBar.appearance().barTintColor = UIColor.rgb(130, green: 211, blue: 138)
+//        application.statusBarStyle = .LightContent
+        
+        let statusBarBackgroundView = UIView()
+        statusBarBackgroundView.backgroundColor = UIColor.rgb(130, green: 211, blue: 138)
+        
+        window?.addSubview(statusBarBackgroundView)
+        window?.addConstraintsWithFormat("H:|[v0]|", views: statusBarBackgroundView)
+        window?.addConstraintsWithFormat("V:|[v0(20)]", views: statusBarBackgroundView)
+        
         return true
     }
 

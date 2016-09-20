@@ -10,7 +10,7 @@ import UIKit
 
 class DrawingViewController: UIViewController {
     
-    var colorStruct = Sticker(displayName:"", color: UIColor.rgb(255, green: 245, blue: 230))
+//    var colorStruct = Sticker(displayName:"", image: UIImage(named: "Apple@2x.png")!)
     var start: CGPoint!
     var rgbColor: (CGFloat, CGFloat, CGFloat) = (116/255, 116/255, 116/255)
     @IBOutlet weak var drawImageView: UIImageView!
