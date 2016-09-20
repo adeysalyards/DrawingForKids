@@ -10,23 +10,28 @@ import UIKit
 
 struct Sticker {
     let displayName: String
-    let image: UIColor
+    let image: UIImage
+    
+    init(displayName: String, image: UIImage) {
+        self.displayName = displayName
+        self.image = image
+    }
     
 }
 
 class StickersViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
    private let stickers = [
-    Sticker(displayName: "basketball", image: UIColor.blueColor()),
-//    Sticker(displayName: "shoe", image: UIImageView),
-//    Sticker(displayName: "bicycle", color: UIColor.rgb(12, green: 159, blue: 210)),
-//    Sticker(displayName: "sun", color: UIColor.rgb(130, green: 211, blue: 138)),
-//    Sticker(displayName: "jumprope", color: UIColor.rgb(116, green: 116, blue: 116)),
-//    Sticker(displayName: "hand", color: UIColor.magentaColor()),
-//    Sticker(displayName: "ear", color: UIColor.brownColor()),
-//    Sticker(displayName: "milk", color: UIColor.cyanColor()),
-//    Sticker(displayName: "apple", color: UIColor.redColor()),
-//    Sticker(displayName: "water", color: UIColor.blackColor()),
+    Sticker(displayName: "basketball", image: UIImage(named: "Basketball")!),
+    Sticker(displayName: "shoe", image: UIImage(named: "Shoe")!),
+    Sticker(displayName: "bicycle", image: UIImage(named: "Bike")!),
+    Sticker(displayName: "sun", image: UIImage(named: "Sun")!),
+    Sticker(displayName: "jumprope", image: UIImage(named: "Jump Rope")!),
+    Sticker(displayName: "hand", image: UIImage(named: "Hand")!),
+    Sticker(displayName: "ear", image: UIImage(named: "Ear")!),
+    Sticker(displayName: "milk", image: UIImage(named: "Milk")!),
+    Sticker(displayName: "apple", image: UIImage(named: "Apple")!),
+    Sticker(displayName: "water", image: UIImage(named: "Water")!),
     ]
     
     var basketballStickerImage: UIImageView {
@@ -53,7 +58,8 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MyCellCollectionViewCell
         
-        cell.stickerImage.image = basketballStickerImage.image
+//        cell.stickerImage.image = basketballStickerImage.image
+        cell.stickerImage.image = stickers[indexPath.row].image
         return cell
     }
     
