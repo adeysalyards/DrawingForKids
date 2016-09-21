@@ -33,16 +33,9 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
     Sticker(displayName: "apple", image: UIImage(named: "Apple")!),
     Sticker(displayName: "water", image: UIImage(named: "Water")!),
     ]
+
     
-    var basketballStickerImage: UIImageView {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Basketball")
-        imageView.contentMode = .ScaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
-    }
-    
-    var selectedCell: NSIndexPath?
+    var selectedImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,13 +61,6 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(view.frame.width/3, 100)
     }
-    
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
-    {
-       	 selectedCell = indexPath
-        performSegueWithIdentifier("stickersSegue", sender: self)
-        
-    }
 
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -92,13 +78,26 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
             squiggleImageview.backgroundColor = UIColor(patternImage: scaled)
             header.insertSubview(squiggleImageview, atIndex: 1)
             
-            header.backgroundForLabelView.layer.cornerRadius = 25
+            header.backgroundForLabelView.layer.cornerRadius = header.backgroundForLabelView.frame.height/2
             return header
         
         default:
             assert(false, "Unexpected element kind")
         }
     }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        
+        selectedImage.image = stickers[indexPath.row].image
+    }
+    
+    @IBAction func didTapSticker(sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        
+        selectedImage = UIImageView(image: imageView.image)
+    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "stickersSegue" {
@@ -108,8 +107,8 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
                 drawingViewController = drawingNavigationController.topViewController as? DrawingViewController
                 drawingViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 drawingViewController.navigationItem.leftItemsSupplementBackButton = true
+                drawingViewController.newlyAddedSticker = selectedImage
                 
-                let color = stickers[(selectedCell?.row)!]
 //                drawingViewController.colorStruct = color
             } else {
                 drawingViewController = segue.destinationViewController as! DrawingViewController

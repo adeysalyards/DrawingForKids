@@ -12,18 +12,18 @@ class DrawingViewController: UIViewController {
     
 //    var colorStruct = Sticker(displayName:"", image: UIImage(named: "Apple@2x.png")!)
     var start: CGPoint!
+    var newlyAddedSticker: UIImageView!
     var rgbColor: (CGFloat, CGFloat, CGFloat) = (116/255, 116/255, 116/255)
     @IBOutlet weak var drawImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        drawImageView.backgroundColor = UIColor(red: 1, green: 245/255, blue: 230/255, alpha: 1)
-
-        navigationItem.title = "My Drawing"
+        if let image = drawImageView?.image {
+            print(image)
+        }
         
-        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
-        navigationItem.leftItemsSupplementBackButton = true
+        drawImageView.backgroundColor = UIColor(red: 1, green: 245/255, blue: 230/255, alpha: 1)
         
     }
     
