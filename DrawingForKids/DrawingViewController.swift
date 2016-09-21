@@ -10,18 +10,23 @@ import UIKit
 
 class DrawingViewController: UIViewController {
     
-//    var colorStruct = Sticker(displayName:"", image: UIImage(named: "Apple@2x.png")!)
     var start: CGPoint!
-    var newlyAddedSticker: UIImageView!
+    var newlyAddedSticker = UIImage() {
+        didSet {
+            print(newlyAddedSticker)
+            view.addSubview(UIImageView(image: newlyAddedSticker))
+        }
+    }
     var rgbColor: (CGFloat, CGFloat, CGFloat) = (116/255, 116/255, 116/255)
     @IBOutlet weak var drawImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let image = drawImageView?.image {
-            print(image)
-        }
+        //IF LET
+//        if let image = newlyAddedSticker? {
+//            print(image)
+//        }
         
         drawImageView.backgroundColor = UIColor(red: 1, green: 245/255, blue: 230/255, alpha: 1)
         

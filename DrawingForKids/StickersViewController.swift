@@ -35,11 +35,13 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
     ]
 
     
-    var selectedImage: UIImageView!
+    var selectedImage = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(splitViewController?.viewControllers)
+        
         navigationItem.title = "Stickers"
         collectionView?.backgroundColor = UIColor.rgb(97, green: 97, blue: 97)
     }
@@ -88,35 +90,31 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
+        let navVC = splitViewController?.viewControllers[1] as? UINavigationController
+        let myDrawingVC = navVC?.topViewController as? DrawingViewController
+       myDrawingVC?.newlyAddedSticker = stickers[indexPath.item].image
         
-        selectedImage.image = stickers[indexPath.row].image
-    }
-    
-    @IBAction func didTapSticker(sender: UITapGestureRecognizer) {
-        let imageView = sender.view as! UIImageView
-        
-        selectedImage = UIImageView(image: imageView.image)
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "stickersSegue" {
-            var drawingViewController: DrawingViewController!
-
-            if let drawingNavigationController = segue.destinationViewController as? UINavigationController {
-                drawingViewController = drawingNavigationController.topViewController as? DrawingViewController
-                drawingViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                drawingViewController.navigationItem.leftItemsSupplementBackButton = true
-                drawingViewController.newlyAddedSticker = selectedImage
-                
-//                drawingViewController.colorStruct = color
-            } else {
-                drawingViewController = segue.destinationViewController as! DrawingViewController
-            };
-            
-            if let selectedRowIndexPath = collectionView?.indexPathsForSelectedItems() {
-                
-            }
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "stickersSegue" {
+//            var drawingViewController: DrawingViewController!
+//
+//            if let drawingNavigationController = segue.destinationViewController as? UINavigationController {
+//                drawingViewController = drawingNavigationController.topViewController as? DrawingViewController
+//                drawingViewController.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+//                drawingViewController.navigationItem.leftItemsSupplementBackButton = true
+//                drawingViewController.newlyAddedSticker = selectedImage.image!
+//                
+////                drawingViewController.colorStruct = color
+//            } else {
+//                drawingViewController = segue.destinationViewController as! DrawingViewController
+//            };
+//            
+//            if let selectedRowIndexPath = collectionView?.indexPathsForSelectedItems() {
+//                
+//            }
+//        }
+//    }
 }
