@@ -8,15 +8,18 @@
 
 import UIKit
 
-class DrawingViewController: UIViewController {
+class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var start: CGPoint!
     var newlyAddedSticker = UIImage() {
         didSet {
-            print(newlyAddedSticker)
-            view.addSubview(UIImageView(image: newlyAddedSticker))
+            makeNewSticker()
         }
     }
+    
+    @IBOutlet weak var trashButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    var newSticker: UIImageView!
     var rgbColor: (CGFloat, CGFloat, CGFloat) = (116/255, 116/255, 116/255)
     @IBOutlet weak var drawImageView: UIImageView!
     
@@ -28,38 +31,92 @@ class DrawingViewController: UIViewController {
 //            print(image)
 //        }
         
+        buttonAppearence()
+        
         drawImageView.backgroundColor = UIColor(red: 1, green: 245/255, blue: 230/255, alpha: 1)
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let touch = touches.first as UITouch!
-        start = touch.locationInView(self.drawImageView)
+    func buttonAppearence() {
+        trashButton.layer.cornerRadius = trashButton.frame.height/2
+        saveButton.layer.cornerRadius = saveButton.frame.height/2
+        
         
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    func makeNewSticker() {
+        newSticker = UIImageView(image: newlyAddedSticker)
+        view.addSubview(newSticker)
+        
+        //action: #selector(YourViewController.handleTap)
+        let myPanGesture = UIPanGestureRecognizer(target: self, action: #selector(DrawingViewController.handleTap))
+        myPanGesture.delegate = self
+        newSticker.isUserInteractionEnabled = true
+        newSticker.addGestureRecognizer(myPanGesture)
+    }
+    
+    @IBAction func didPressSaveButton(_ sender: AnyObject) {
+        
+    }
+    
+    @IBAction func didPressTrashButton(_ sender: AnyObject) {
+        
+    }
+    
+    
+    func handleTap(sender: UIPanGestureRecognizer) {
+        let location = sender.location(in: view)
+        
+        if sender.state == UIGestureRecognizerState.began {
+            print("hi")
+        }else if sender.state == UIGestureRecognizerState.changed {
+            newSticker.center = location
+        }else if sender.state == UIGestureRecognizerState.ended {
+            
+        }
+    }
+    
+    @IBAction func revealDrawer(_ sender: AnyObject) {
+        let navVC = splitViewController?.viewControllers[1] as? UINavigationController
+        let myStickersVC = navVC?.topViewController as? StickersViewController
+        myStickersVC?.willRotate(to: self.interfaceOrientation, duration: 0)
+    }
+
+    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        print("rotating")
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first as UITouch!
-        let end = touch.locationInView(self.drawImageView)
+        start = touch?.location(in: self.drawImageView)
+        
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first as UITouch!
+        let end = touch?.location(in: self.drawImageView)
         if let s = self.start {
-            draw(s, end: end)
+            draw(s, end: end!)
         }
         self.start = end
     }
     
-    func draw(start: CGPoint, end: CGPoint){
+    func draw(_ start: CGPoint, end: CGPoint){
         UIGraphicsBeginImageContext(self.drawImageView.frame.size)
         let context = UIGraphicsGetCurrentContext()
-        drawImageView?.image?.drawInRect(CGRect(x: 0, y: 0, width: drawImageView.frame.width, height: drawImageView.frame.height))
+        drawImageView?.image?.draw(in: CGRect(x: 0, y: 0, width: drawImageView.frame.width, height: drawImageView.frame.height))
         
-        CGContextSetLineWidth(context, 6)
-        CGContextBeginPath(context)
-        CGContextMoveToPoint(context, start.x, start.y)
-        CGContextAddLineToPoint(context, end.x, end.y)
-        CGContextSetRGBStrokeColor(context, rgbColor.0, rgbColor.1, rgbColor.2, 1)
-        CGContextSetLineCap(context, CGLineCap.Round)
-        CGContextSetLineJoin(context, CGLineJoin.Round)
-        CGContextStrokePath(context)
+        context?.setLineWidth(6)
+        context?.beginPath()
+        context?.move(to: CGPoint(x: start.x, y: start.y))
+//        CGContextMoveToPoint(context, start.x, start.y)
+        context?.addLine(to: CGPoint(x: end.x, y: end.y))
+//        CGContextAddLineToPoint(context, end.x, end.y)
+        context?.setStrokeColor(red: rgbColor.0, green: rgbColor.1, blue: rgbColor.2, alpha: 1)
+        context?.setLineCap(CGLineCap.round)
+        context?.setLineJoin(CGLineJoin.round)
+        context?.strokePath()
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

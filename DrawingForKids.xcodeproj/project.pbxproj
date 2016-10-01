@@ -18,6 +18,7 @@
 		78FA10181D5A470000B21512 /* StickersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA10171D5A470000B21512 /* StickersViewController.swift */; };
 		78FA101A1D5A470F00B21512 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA10191D5A470F00B21512 /* DrawingViewController.swift */; };
 		A0158C1A1D91EC7C00CE132D /* Aleo-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0158C191D91EC7C00CE132D /* Aleo-Bold.otf */; };
+		A08037021DA02499008FC78B /* beep-hightone.aif in Resources */ = {isa = PBXBuildFile; fileRef = A08037011DA02499008FC78B /* beep-hightone.aif */; };
 		A0B679BD1D7114B80044AF85 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B679BC1D7114B80044AF85 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		78FA10171D5A470000B21512 /* StickersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickersViewController.swift; sourceTree = "<group>"; };
 		78FA10191D5A470F00B21512 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		A0158C191D91EC7C00CE132D /* Aleo-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Aleo-Bold.otf"; sourceTree = "<group>"; };
+		A08037011DA02499008FC78B /* beep-hightone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-hightone.aif"; sourceTree = "<group>"; };
 		A0B679BC1D7114B80044AF85 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 				78FA0FED1D5A452200B21512 /* Main.storyboard */,
 				78D6F7C71D90B9ED001AA2C1 /* MyCellCollectionViewCell.swift */,
 				786293541D73965C0011A53D /* HeaderCollectionReusableView.swift */,
+				A08037011DA02499008FC78B /* beep-hightone.aif */,
 				A0158C191D91EC7C00CE132D /* Aleo-Bold.otf */,
 				78FA10191D5A470F00B21512 /* DrawingViewController.swift */,
 				78FA10171D5A470000B21512 /* StickersViewController.swift */,
@@ -208,13 +211,18 @@
 				TargetAttributes = {
 					78FA0FE51D5A452200B21512 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = FM4Q7FBJQ8;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					78FA0FF91D5A452200B21512 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 78FA0FE51D5A452200B21512;
 					};
 					78FA10041D5A452200B21512 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 78FA0FE51D5A452200B21512;
 					};
 				};
@@ -248,6 +256,7 @@
 				78FA0FF11D5A452200B21512 /* Assets.xcassets in Resources */,
 				A0158C1A1D91EC7C00CE132D /* Aleo-Bold.otf in Resources */,
 				78FA0FEF1D5A452200B21512 /* Main.storyboard in Resources */,
+				A08037021DA02499008FC78B /* beep-hightone.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,10 +430,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = FM4Q7FBJQ8;
 				INFOPLIST_FILE = DrawingForKids/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.DrawingForKids";
+				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.Drawing4KidsYay";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e0c9a081-8eee-4c0b-b62e-5f008e917f23";
+				PROVISIONING_PROFILE_SPECIFIER = AdeysProfile;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -432,10 +447,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = FM4Q7FBJQ8;
 				INFOPLIST_FILE = DrawingForKids/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.DrawingForKids";
+				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.Drawing4KidsYay";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e0c9a081-8eee-4c0b-b62e-5f008e917f23";
+				PROVISIONING_PROFILE_SPECIFIER = AdeysProfile;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -447,6 +468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.DrawingForKidsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrawingForKids.app/DrawingForKids";
 			};
 			name = Debug;
@@ -459,6 +481,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.DrawingForKidsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DrawingForKids.app/DrawingForKids";
 			};
 			name = Release;
@@ -470,6 +493,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.DrawingForKidsUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = DrawingForKids;
 			};
 			name = Debug;
@@ -481,6 +505,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.DrawingForKidsUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = DrawingForKids;
 			};
 			name = Release;

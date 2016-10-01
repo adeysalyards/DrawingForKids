@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 struct Sticker {
     let displayName: String
@@ -21,7 +22,7 @@ struct Sticker {
 
 class StickersViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-   private let stickers = [
+   fileprivate let stickers = [
     Sticker(displayName: "basketball", image: UIImage(named: "Basketball")!),
     Sticker(displayName: "shoe", image: UIImage(named: "Shoe")!),
     Sticker(displayName: "bicycle", image: UIImage(named: "Bike")!),
@@ -36,49 +37,50 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
 
     
     var selectedImage = UIImageView()
+    var myAudioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print(splitViewController?.viewControllers)
+//        splitViewController?.presentsWithGesture = false
+        
         
         navigationItem.title = "Stickers"
         collectionView?.backgroundColor = UIColor.rgb(97, green: 97, blue: 97)
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return stickers.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MyCellCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyCellCollectionViewCell
         
-//        cell.stickerImage.image = basketballStickerImage.image
-        cell.stickerImage.image = stickers[indexPath.row].image
+        cell.stickerImage.image = stickers[(indexPath as NSIndexPath).row].image
         return cell
     }
     
     
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(view.frame.width/3, 100)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width/3, height: 100)
     }
 
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         switch kind {
         case UICollectionElementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderCell", forIndexPath: indexPath) as! HeaderCollectionReusableView
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderCell", for: indexPath) as! HeaderCollectionReusableView
             header.backgroundColor = UIColor.rgb(130, green: 211, blue: 138)
             
             let squiggleImageview = UIView()
             squiggleImageview.alpha = 0.2
             squiggleImageview.frame = header.frame
             let image = header.squiggleImage.image!
-            let scaled = UIImage(CGImage: image.CGImage!, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)
+            let scaled = UIImage(cgImage: image.cgImage!, scale: UIScreen.main.scale, orientation: image.imageOrientation)
             squiggleImageview.backgroundColor = UIColor(patternImage: scaled)
-            header.insertSubview(squiggleImageview, atIndex: 1)
+            header.insertSubview(squiggleImageview, at: 1)
             
             header.backgroundForLabelView.layer.cornerRadius = header.backgroundForLabelView.frame.height/2
             return header
@@ -88,11 +90,29 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
+
+        let myPath = Bundle.main.path(forResource: "beep-hightone.aif", ofType: nil)
+        
+        if let myPath = myPath {
+            let url = URL(fileURLWithPath: myPath)
+            
+            do {
+                try myAudioPlayer = AVAudioPlayer(contentsOf: url)
+                myAudioPlayer.play()
+                print("there is sound")
+            } catch {
+                print("welp, it didn't work")
+            }
+            
+        } else {
+            print("didn't find anything")
+        }
+        
         let navVC = splitViewController?.viewControllers[1] as? UINavigationController
         let myDrawingVC = navVC?.topViewController as? DrawingViewController
-       myDrawingVC?.newlyAddedSticker = stickers[indexPath.item].image
+       myDrawingVC?.newlyAddedSticker = stickers[(indexPath as NSIndexPath).item].image
         
     }
     
