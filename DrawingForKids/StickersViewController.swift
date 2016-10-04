@@ -101,13 +101,12 @@ class StickersViewController: UICollectionViewController, UICollectionViewDelega
             do {
                 try myAudioPlayer = AVAudioPlayer(contentsOf: url)
                 myAudioPlayer.play()
-                print("there is sound")
             } catch {
-                print("welp, it didn't work")
+                print("Can't play hightone sound")
             }
             
         } else {
-            print("didn't find anything")
+            print("Couldn't find hightone sound")
         }
         
         let navVC = splitViewController?.viewControllers[1] as? UINavigationController

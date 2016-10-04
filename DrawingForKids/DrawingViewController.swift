@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
     
@@ -17,14 +18,19 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    @IBOutlet weak var grayFrame: UIView!
     @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     var newSticker: UIImageView!
     var rgbColor: (CGFloat, CGFloat, CGFloat) = (116/255, 116/255, 116/255)
+    var myAudioPlayer = AVAudioPlayer()
     @IBOutlet weak var drawImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        drawImageView.layer.borderColor = UIColor.black.cgColor
+        drawImageView.layer.borderWidth = 4
         
         //IF LET
 //        if let image = newlyAddedSticker? {
@@ -32,7 +38,6 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
 //        }
         
         buttonAppearence()
-        
         drawImageView.backgroundColor = UIColor(red: 1, green: 245/255, blue: 230/255, alpha: 1)
         
     }
@@ -56,11 +61,44 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func didPressSaveButton(_ sender: AnyObject) {
-        
+        let myPath = Bundle.main.path(forResource: "beep-brightpop.aif", ofType: nil)
+        if let myPath = myPath {
+            let url = URL(fileURLWithPath: myPath)
+            
+            do {
+                try myAudioPlayer = AVAudioPlayer(contentsOf: url)
+                myAudioPlayer.play()
+                UIGraphicsBeginImageContext(view.frame.size)
+                view.layer.render(in: UIGraphicsGetCurrentContext()!)
+                let image = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                //Save it to the camera roll
+                UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+                drawImageView.image = nil
+
+            } catch {
+                print("Can't play rejected sound")
+            }
+        } else {
+            print("Couldn't find the rejected sound")
+        }
     }
     
     @IBAction func didPressTrashButton(_ sender: AnyObject) {
-        
+        let myPath = Bundle.main.path(forResource: "beep-rejected.aif", ofType: nil)
+        if let myPath = myPath {
+            let url = URL(fileURLWithPath: myPath)
+            
+            do {
+                try myAudioPlayer = AVAudioPlayer(contentsOf: url)
+                myAudioPlayer.play()
+                drawImageView.image = nil
+            } catch {
+                print("Can't play rejected sound")
+            }
+        } else {
+            print("Couldn't find the rejected sound")
+        }
     }
     
     
@@ -83,7 +121,8 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        print("rotating")
+                print("the center of the save button is \(saveButton.center) and the width of the frame is \(grayFrame.frame.width)/r the width of the view is \(self.view.frame.width)")
+        
     }
     
     

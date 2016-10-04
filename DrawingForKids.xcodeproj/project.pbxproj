@@ -19,6 +19,8 @@
 		78FA101A1D5A470F00B21512 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA10191D5A470F00B21512 /* DrawingViewController.swift */; };
 		A0158C1A1D91EC7C00CE132D /* Aleo-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0158C191D91EC7C00CE132D /* Aleo-Bold.otf */; };
 		A08037021DA02499008FC78B /* beep-hightone.aif in Resources */ = {isa = PBXBuildFile; fileRef = A08037011DA02499008FC78B /* beep-hightone.aif */; };
+		A08037041DA142CE008FC78B /* beep-rejected.aif in Resources */ = {isa = PBXBuildFile; fileRef = A08037031DA142CE008FC78B /* beep-rejected.aif */; };
+		A08037061DA14CFB008FC78B /* beep-brightpop.aif in Resources */ = {isa = PBXBuildFile; fileRef = A08037051DA14CFB008FC78B /* beep-brightpop.aif */; };
 		A0B679BD1D7114B80044AF85 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B679BC1D7114B80044AF85 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		78FA10191D5A470F00B21512 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
 		A0158C191D91EC7C00CE132D /* Aleo-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Aleo-Bold.otf"; sourceTree = "<group>"; };
 		A08037011DA02499008FC78B /* beep-hightone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-hightone.aif"; sourceTree = "<group>"; };
+		A08037031DA142CE008FC78B /* beep-rejected.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-rejected.aif"; sourceTree = "<group>"; };
+		A08037051DA14CFB008FC78B /* beep-brightpop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-brightpop.aif"; sourceTree = "<group>"; };
 		A0B679BC1D7114B80044AF85 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +117,8 @@
 				78FA0FED1D5A452200B21512 /* Main.storyboard */,
 				78D6F7C71D90B9ED001AA2C1 /* MyCellCollectionViewCell.swift */,
 				786293541D73965C0011A53D /* HeaderCollectionReusableView.swift */,
+				A08037031DA142CE008FC78B /* beep-rejected.aif */,
+				A08037051DA14CFB008FC78B /* beep-brightpop.aif */,
 				A08037011DA02499008FC78B /* beep-hightone.aif */,
 				A0158C191D91EC7C00CE132D /* Aleo-Bold.otf */,
 				78FA10191D5A470F00B21512 /* DrawingViewController.swift */,
@@ -254,6 +260,8 @@
 			files = (
 				78FA0FF41D5A452200B21512 /* LaunchScreen.storyboard in Resources */,
 				78FA0FF11D5A452200B21512 /* Assets.xcassets in Resources */,
+				A08037061DA14CFB008FC78B /* beep-brightpop.aif in Resources */,
+				A08037041DA142CE008FC78B /* beep-rejected.aif in Resources */,
 				A0158C1A1D91EC7C00CE132D /* Aleo-Bold.otf in Resources */,
 				78FA0FEF1D5A452200B21512 /* Main.storyboard in Resources */,
 				A08037021DA02499008FC78B /* beep-hightone.aif in Resources */,
