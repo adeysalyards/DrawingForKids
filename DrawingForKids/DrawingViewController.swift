@@ -18,20 +18,24 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    @IBOutlet weak var colorButtonStackView: UIStackView!
+    @IBOutlet weak var color5Button: UIButton!
+    @IBOutlet weak var color4Button: UIButton!
+    @IBOutlet weak var color3Button: UIButton!
+    @IBOutlet weak var color2Button: UIButton!
+    @IBOutlet weak var color1Button: UIButton!
     @IBOutlet weak var grayFrame: UIView!
     @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     var newSticker: UIImageView!
     var rgbColor: (CGFloat, CGFloat, CGFloat) = (116/255, 116/255, 116/255)
     var myAudioPlayer = AVAudioPlayer()
+    var color: CGColor!
     @IBOutlet weak var drawImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        drawImageView.layer.borderColor = UIColor.black.cgColor
-        drawImageView.layer.borderWidth = 4
-        
+        color = UIColor(red: 12/255, green: 159/255, blue: 210/255, alpha: 1).cgColor
         //IF LET
 //        if let image = newlyAddedSticker? {
 //            print(image)
@@ -46,7 +50,52 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         trashButton.layer.cornerRadius = trashButton.frame.height/2
         saveButton.layer.cornerRadius = saveButton.frame.height/2
         
+        trashButton.backgroundColor = UIColor.rgb(255, green: 127, blue: 127)
+        saveButton.backgroundColor = UIColor.rgb(12, green: 159, blue: 210)
         
+        color1Button.layer.cornerRadius = 16
+        color2Button.layer.cornerRadius = 16
+        color3Button.layer.cornerRadius = 16
+        color4Button.layer.cornerRadius = 16
+        color5Button.layer.cornerRadius = 16
+        
+        color1Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        color2Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        color3Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        color4Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        color5Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        
+        color1Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+        color2Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+        color3Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+        color4Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+        color5Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+        
+        color1Button.layer.shadowRadius = 0
+        color2Button.layer.shadowRadius = 0
+        color3Button.layer.shadowRadius = 0
+        color4Button.layer.shadowRadius = 0
+        color5Button.layer.shadowRadius = 0
+        
+        color1Button.layer.shadowOpacity = 1
+        color2Button.layer.shadowOpacity = 1
+        color3Button.layer.shadowOpacity = 1
+        color4Button.layer.shadowOpacity = 1
+        color5Button.layer.shadowOpacity = 1
+        
+        if color1Button.isSelected {
+            color1Button.backgroundColor = UIColor.rgb(204, green: 102, blue: 102)
+        }
+        
+//        for subView in colorButtonStackView {
+//            
+//        }
+//        
+    }
+    
+    @IBAction func didChangeColor(_ sender: UIButton){
+        
+        color = sender.backgroundColor?.cgColor
     }
     
     func makeNewSticker() {
@@ -152,7 +201,7 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
 //        CGContextMoveToPoint(context, start.x, start.y)
         context?.addLine(to: CGPoint(x: end.x, y: end.y))
 //        CGContextAddLineToPoint(context, end.x, end.y)
-        context?.setStrokeColor(red: rgbColor.0, green: rgbColor.1, blue: rgbColor.2, alpha: 1)
+        context?.setStrokeColor(color)
         context?.setLineCap(CGLineCap.round)
         context?.setLineJoin(CGLineJoin.round)
         context?.strokePath()
