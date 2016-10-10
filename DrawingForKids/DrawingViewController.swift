@@ -117,9 +117,7 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         color = sender.backgroundColor?.cgColor
         
         for UIButton in myColorButtons {
-            if UIButton.isSelected == true {
-                UIButton.isSelected = false
-            }
+            UIButton.isSelected != UIButton.isSelected
         }
         
         sender.isSelected = true
