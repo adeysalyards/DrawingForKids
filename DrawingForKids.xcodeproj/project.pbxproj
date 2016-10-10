@@ -222,7 +222,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = FM4Q7FBJQ8;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					78FA0FF91D5A452200B21512 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -443,14 +443,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FM4Q7FBJQ8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawingForKids/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.Drawing4KidsYay";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e0c9a081-8eee-4c0b-b62e-5f008e917f23";
-				PROVISIONING_PROFILE_SPECIFIER = AdeysProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -460,14 +460,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = FM4Q7FBJQ8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawingForKids/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adey-Salyards.Drawing4KidsYay";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e0c9a081-8eee-4c0b-b62e-5f008e917f23";
-				PROVISIONING_PROFILE_SPECIFIER = AdeysProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

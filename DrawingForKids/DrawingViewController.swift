@@ -24,6 +24,9 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var color3Button: UIButton!
     @IBOutlet weak var color2Button: UIButton!
     @IBOutlet weak var color1Button: UIButton!
+    
+    var myColorButtons: [UIButton]!
+    
     @IBOutlet weak var grayFrame: UIView!
     @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
@@ -41,51 +44,67 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
 //            print(image)
 //        }
         
+        myColorButtons = [color1Button, color2Button, color3Button, color4Button, color5Button]
+        
         buttonAppearence()
         drawImageView.backgroundColor = UIColor(red: 1, green: 245/255, blue: 230/255, alpha: 1)
         
     }
     
     func buttonAppearence() {
-        trashButton.layer.cornerRadius = trashButton.frame.height/2
-        saveButton.layer.cornerRadius = saveButton.frame.height/2
+        
+        for UIButton in myColorButtons {
+            UIButton.layer.cornerRadius = 16
+            UIButton.layer.shadowColor = UIColor.black.cgColor
+            UIButton.layer.shadowOffset = CGSize(width: -2, height: 2)
+            UIButton.layer.shadowRadius = 0
+            UIButton.layer.shadowOpacity = 0.3
+        }
+        
+        trashButton.layer.cornerRadius = 25
+        saveButton.layer.cornerRadius = 25
         
         trashButton.backgroundColor = UIColor.rgb(255, green: 127, blue: 127)
         saveButton.backgroundColor = UIColor.rgb(12, green: 159, blue: 210)
         
-        color1Button.layer.cornerRadius = 16
-        color2Button.layer.cornerRadius = 16
-        color3Button.layer.cornerRadius = 16
-        color4Button.layer.cornerRadius = 16
-        color5Button.layer.cornerRadius = 16
-        
-        color1Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        color2Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        color3Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        color4Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        color5Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-        
-        color1Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-        color2Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-        color3Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-        color4Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-        color5Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-        
-        color1Button.layer.shadowRadius = 0
-        color2Button.layer.shadowRadius = 0
-        color3Button.layer.shadowRadius = 0
-        color4Button.layer.shadowRadius = 0
-        color5Button.layer.shadowRadius = 0
-        
-        color1Button.layer.shadowOpacity = 1
-        color2Button.layer.shadowOpacity = 1
-        color3Button.layer.shadowOpacity = 1
-        color4Button.layer.shadowOpacity = 1
-        color5Button.layer.shadowOpacity = 1
-        
-        if color1Button.isSelected {
-            color1Button.backgroundColor = UIColor.rgb(204, green: 102, blue: 102)
-        }
+//        color1Button.layer.cornerRadius = 16
+//        color2Button.layer.cornerRadius = 16
+//        color3Button.layer.cornerRadius = 16
+//        color4Button.layer.cornerRadius = 16
+//        color5Button.layer.cornerRadius = 16
+//        
+//        color1Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+//        color2Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+//        color3Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+//        color4Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+//        color5Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+//        trashButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+//        saveButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+//        
+//        color1Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+//        color2Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+//        color3Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+//        color4Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+//        color5Button.layer.shadowOffset = CGSize(width: -2, height: 2)
+//        trashButton.layer.shadowOffset = CGSize(width: -2, height: 2)
+//        saveButton.layer.shadowOffset = CGSize(width: -2, height: 2)
+//        
+//        color1Button.layer.shadowRadius = 0
+//        color2Button.layer.shadowRadius = 0
+//        color3Button.layer.shadowRadius = 0
+//        color4Button.layer.shadowRadius = 0
+//        color5Button.layer.shadowRadius = 0
+//        trashButton.layer.shadowRadius = 0
+//        saveButton.layer.shadowRadius = 0
+//        
+//        color1Button.layer.shadowOpacity = 1
+//        color2Button.layer.shadowOpacity = 1
+//        color3Button.layer.shadowOpacity = 1
+//        color4Button.layer.shadowOpacity = 1
+//        color5Button.layer.shadowOpacity = 1
+//        trashButton.layer.shadowRadius = 1
+//        saveButton.layer.shadowRadius = 1
+
         
 //        for subView in colorButtonStackView {
 //            
@@ -96,6 +115,35 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func didChangeColor(_ sender: UIButton){
         
         color = sender.backgroundColor?.cgColor
+        
+        for UIButton in myColorButtons {
+            if UIButton.isSelected == true {
+                UIButton.isSelected = false
+            }
+        }
+        
+        sender.isSelected = true
+        
+        if sender.isSelected == true {
+            sender.layer.borderColor = UIColor.white.cgColor
+            sender.layer.borderWidth = 4
+            sender.frame = CGRect(x: sender.frame.origin.x, y: sender.frame.origin.y, width: sender.frame.width + 4, height: sender.frame.height + 4)
+            sender.layer.cornerRadius = 18
+        }
+        
+//        switch sender.state {
+//        case sender.isSelected:
+//            print("Hi i'm a button, i just got selected")
+//            
+//        case sender.isHighlighted:
+//            print("Hooray i just got highlighted")
+//            
+//        default:
+//            print("I'm neither selected or highlighted, but someone just pressed me")
+//        }
+//        
+        
+        
     }
     
     func makeNewSticker() {
@@ -104,9 +152,12 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         
         //action: #selector(YourViewController.handleTap)
         let myPanGesture = UIPanGestureRecognizer(target: self, action: #selector(DrawingViewController.handleTap))
+//        let myPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(DrawingViewController.handlePinch))
         myPanGesture.delegate = self
+//        myPinchGesture.delegate = self
         newSticker.isUserInteractionEnabled = true
         newSticker.addGestureRecognizer(myPanGesture)
+//        newSticker.addGestureRecognizer(myPinchGesture)
     }
     
     @IBAction func didPressSaveButton(_ sender: AnyObject) {
@@ -155,13 +206,26 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         let location = sender.location(in: view)
         
         if sender.state == UIGestureRecognizerState.began {
-            print("hi")
+            
         }else if sender.state == UIGestureRecognizerState.changed {
             newSticker.center = location
         }else if sender.state == UIGestureRecognizerState.ended {
             
         }
     }
+    
+//    func handlePinch(sender: UIPinchGestureRecognizer) {
+//        let scale = sender.scale
+//        let myVariable = CGAffineTransform(scaleX: scale, y: scale)
+//        if sender.state == UIGestureRecognizerState.began {
+//            
+//        } else if sender.state == UIGestureRecognizerState.changed {
+//            newSticker.transform = scaleby
+//        } else if sender.state == UIGestureRecognizerState.ended {
+//            
+//        }
+//        
+//    }
     
     @IBAction func revealDrawer(_ sender: AnyObject) {
         let navVC = splitViewController?.viewControllers[1] as? UINavigationController
