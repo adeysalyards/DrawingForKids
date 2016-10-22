@@ -17,7 +17,7 @@
         <scene sceneID="sSd-3r-hVM">
             <objects>
                 <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="oqX-jv-TTc" customClass="StickersViewController" customModule="DrawingForKids" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gE6-0M-Mgz">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="gE6-0M-Mgz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="AXY-cD-OzS">
@@ -316,7 +316,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="WnN-Iy-ql5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="J2i-zD-02n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="J2i-zD-02n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -335,7 +335,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="c3J-6Y-DyO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NxG-mf-Ew1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NxG-mf-Ew1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

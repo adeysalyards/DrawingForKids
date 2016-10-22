@@ -18,6 +18,19 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+//    @IBOutlet var colorButton: [UIButton]! {
+//        didSet {
+//            colorButton.forEach {
+//                colorButton.layer.cornerRadius = 16
+//                colorButton.layer.shadowColor = UIColor.black.cgColor
+//                colorButton.layer.shadowOffset = CGSize(width: -2, height: 2)
+//                colorButton.layer.shadowRadius = 0
+//                colorButton.layer.shadowOpacity = 0.3
+//
+//            }
+//        }
+//    }
+    
     @IBOutlet weak var colorButtonStackView: UIStackView!
     @IBOutlet weak var color5Button: UIButton!
     @IBOutlet weak var color4Button: UIButton!
@@ -59,6 +72,7 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
             UIButton.layer.shadowOffset = CGSize(width: -2, height: 2)
             UIButton.layer.shadowRadius = 0
             UIButton.layer.shadowOpacity = 0.3
+
         }
         
         trashButton.layer.cornerRadius = 25
@@ -74,30 +88,23 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         color = sender.backgroundColor?.cgColor
         
         for UIButton in myColorButtons {
-            UIButton.isSelected != UIButton.isSelected
+            if UIButton.isSelected == true {
+                UIButton.isSelected = false
+                UIButton.layer.borderWidth = 0
+                UIButton.layer.cornerRadius = 16
+//                UIButton.layer.frame = CGRect(x: sender.frame.origin.x, y: sender.frame.origin.y, width: sender.frame.width, height: sender.frame.height)
+
+            }
         }
         
-        sender.isSelected = true
+        sender.isSelected = !sender.isSelected
         
         if sender.isSelected == true {
             sender.layer.borderColor = UIColor.white.cgColor
             sender.layer.borderWidth = 4
-            sender.frame = CGRect(x: sender.frame.origin.x, y: sender.frame.origin.y, width: sender.frame.width + 4, height: sender.frame.height + 4)
             sender.layer.cornerRadius = 18
+//            sender.layer.frame = CGRect(x: (sender.frame.origin.x - 2), y: (sender.frame.origin.y - 2), width: sender.frame.width + 4, height: sender.frame.height + 4)
         }
-        
-//        switch sender.state {
-//        case sender.isSelected:
-//            print("Hi i'm a button, i just got selected")
-//            
-//        case sender.isHighlighted:
-//            print("Hooray i just got highlighted")
-//            
-//        default:
-//            print("I'm neither selected or highlighted, but someone just pressed me")
-//        }
-//        
-        
         
     }
     
@@ -105,7 +112,7 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         newSticker = UIImageView(image: newlyAddedSticker)
         view.addSubview(newSticker)
         
-        let myPanGesture = UIPanGestureRecognizer(target: self, action: #selector(DrawingViewController.handleTap))
+        let myPanGesture = UIPanGestureRecognizer(target: self, action: #selector(DrawingViewController.handlePan))
         let myPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(DrawingViewController.handlePinch))
         let myRotateGesture = UIRotationGestureRecognizer(target: self, action: #selector(DrawingViewController.handleRotation))
         let myDoubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(DrawingViewController.handleDoubleTap))
@@ -157,6 +164,7 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
                 try myAudioPlayer = AVAudioPlayer(contentsOf: url)
                 myAudioPlayer.play()
                 drawImageView.image = nil
+                newSticker.removeFromSuperview()
             } catch {
                 print("Can't play rejected sound")
             }
@@ -165,12 +173,17 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    @nonobjc func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
-    func handleTap(sender: UIPanGestureRecognizer) {
+    
+    func handlePan(sender: UIPanGestureRecognizer) {
         let location = sender.location(in: view)
         
         if sender.state == UIGestureRecognizerState.began {
-            
+            newSticker = sender.view as! UIImageView
+            newSticker.superview?.bringSubview(toFront: view)
         }else if sender.state == UIGestureRecognizerState.changed {
             newSticker.center = location
         }else if sender.state == UIGestureRecognizerState.ended {
@@ -180,36 +193,31 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func handlePinch(sender: UIPinchGestureRecognizer) {
         let scale = sender.scale
-        
-        if sender.state == UIGestureRecognizerState.began {
-            
-        } else if sender.state == UIGestureRecognizerState.changed {
-            newSticker = sender.view as! UIImageView
-            newSticker.transform = CGAffineTransform(scaleX: scale, y: scale)
-        } else if sender.state == UIGestureRecognizerState.ended {
-            
-        }
+        let myImageView = sender.view as! UIImageView
+        myImageView.superview?.bringSubview(toFront: view)
+
+        myImageView.transform = myImageView.transform.scaledBy(x: scale, y: scale)
+        sender.scale = 1
         
     }
     
     func handleRotation(sender: UIRotationGestureRecognizer) {
-        if sender.state == UIGestureRecognizerState.began {
-            
-        } else if sender.state == UIGestureRecognizerState.changed {
-            
-        } else if sender.state == UIGestureRecognizerState.ended {
-            
-        }
+        let myImageView = sender.view as! UIImageView
+        myImageView.superview?.bringSubview(toFront: view)
+        let rotate = CGAffineTransform(rotationAngle: sender.rotation)
+        let scaleAndRotate = rotate.scaledBy(x: 2, y: 2)
+        myImageView.transform = scaleAndRotate
+        //        let rotate = CGAffineTransform(rotationAngle: sender.rotation)
+//        let scaleAndRotate = rotate.scaledBy(x: 3, y: 3)
+//        let myImageView = sender.view as! UIImageView
+////        myImageView.transform = myImageView.transform.rotated(by: rotation)
+//        myImageView.transform = scaleAndRotate
+//        sender.rotation = 0
     }
     
     func handleDoubleTap(sender: UITapGestureRecognizer) {
-        if sender.state == UIGestureRecognizerState.began {
-            
-        } else if sender.state == UIGestureRecognizerState.changed {
-            
-        } else if sender.state == UIGestureRecognizerState.ended {
-            
-        }
+        let myImageView = sender.view as! UIImageView
+        myImageView.superview?.bringSubview(toFront: view)
     }
     
     @IBAction func revealDrawer(_ sender: AnyObject) {
