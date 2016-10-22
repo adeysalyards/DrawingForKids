@@ -67,49 +67,6 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         trashButton.backgroundColor = UIColor.rgb(255, green: 127, blue: 127)
         saveButton.backgroundColor = UIColor.rgb(12, green: 159, blue: 210)
         
-//        color1Button.layer.cornerRadius = 16
-//        color2Button.layer.cornerRadius = 16
-//        color3Button.layer.cornerRadius = 16
-//        color4Button.layer.cornerRadius = 16
-//        color5Button.layer.cornerRadius = 16
-//        
-//        color1Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-//        color2Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-//        color3Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-//        color4Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-//        color5Button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-//        trashButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-//        saveButton.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
-//        
-//        color1Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-//        color2Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-//        color3Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-//        color4Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-//        color5Button.layer.shadowOffset = CGSize(width: -2, height: 2)
-//        trashButton.layer.shadowOffset = CGSize(width: -2, height: 2)
-//        saveButton.layer.shadowOffset = CGSize(width: -2, height: 2)
-//        
-//        color1Button.layer.shadowRadius = 0
-//        color2Button.layer.shadowRadius = 0
-//        color3Button.layer.shadowRadius = 0
-//        color4Button.layer.shadowRadius = 0
-//        color5Button.layer.shadowRadius = 0
-//        trashButton.layer.shadowRadius = 0
-//        saveButton.layer.shadowRadius = 0
-//        
-//        color1Button.layer.shadowOpacity = 1
-//        color2Button.layer.shadowOpacity = 1
-//        color3Button.layer.shadowOpacity = 1
-//        color4Button.layer.shadowOpacity = 1
-//        color5Button.layer.shadowOpacity = 1
-//        trashButton.layer.shadowRadius = 1
-//        saveButton.layer.shadowRadius = 1
-
-        
-//        for subView in colorButtonStackView {
-//            
-//        }
-//        
     }
     
     @IBAction func didChangeColor(_ sender: UIButton){
@@ -148,14 +105,23 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         newSticker = UIImageView(image: newlyAddedSticker)
         view.addSubview(newSticker)
         
-        //action: #selector(YourViewController.handleTap)
         let myPanGesture = UIPanGestureRecognizer(target: self, action: #selector(DrawingViewController.handleTap))
-//        let myPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(DrawingViewController.handlePinch))
+        let myPinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(DrawingViewController.handlePinch))
+        let myRotateGesture = UIRotationGestureRecognizer(target: self, action: #selector(DrawingViewController.handleRotation))
+        let myDoubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(DrawingViewController.handleDoubleTap))
         myPanGesture.delegate = self
-//        myPinchGesture.delegate = self
+        myPinchGesture.delegate = self
+        myRotateGesture.delegate = self
+        myDoubleTapGesture.numberOfTapsRequired = 2
+        myDoubleTapGesture.delegate = self
         newSticker.isUserInteractionEnabled = true
+        newSticker.isMultipleTouchEnabled = true
+        
         newSticker.addGestureRecognizer(myPanGesture)
-//        newSticker.addGestureRecognizer(myPinchGesture)
+        newSticker.addGestureRecognizer(myPinchGesture)
+        newSticker.addGestureRecognizer(myRotateGesture)
+        newSticker.addGestureRecognizer(myDoubleTapGesture)
+
     }
     
     @IBAction func didPressSaveButton(_ sender: AnyObject) {
@@ -212,18 +178,39 @@ class DrawingViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-//    func handlePinch(sender: UIPinchGestureRecognizer) {
-//        let scale = sender.scale
-//        let myVariable = CGAffineTransform(scaleX: scale, y: scale)
-//        if sender.state == UIGestureRecognizerState.began {
-//            
-//        } else if sender.state == UIGestureRecognizerState.changed {
-//            newSticker.transform = scaleby
-//        } else if sender.state == UIGestureRecognizerState.ended {
-//            
-//        }
-//        
-//    }
+    func handlePinch(sender: UIPinchGestureRecognizer) {
+        let scale = sender.scale
+        
+        if sender.state == UIGestureRecognizerState.began {
+            
+        } else if sender.state == UIGestureRecognizerState.changed {
+            newSticker = sender.view as! UIImageView
+            newSticker.transform = CGAffineTransform(scaleX: scale, y: scale)
+        } else if sender.state == UIGestureRecognizerState.ended {
+            
+        }
+        
+    }
+    
+    func handleRotation(sender: UIRotationGestureRecognizer) {
+        if sender.state == UIGestureRecognizerState.began {
+            
+        } else if sender.state == UIGestureRecognizerState.changed {
+            
+        } else if sender.state == UIGestureRecognizerState.ended {
+            
+        }
+    }
+    
+    func handleDoubleTap(sender: UITapGestureRecognizer) {
+        if sender.state == UIGestureRecognizerState.began {
+            
+        } else if sender.state == UIGestureRecognizerState.changed {
+            
+        } else if sender.state == UIGestureRecognizerState.ended {
+            
+        }
+    }
     
     @IBAction func revealDrawer(_ sender: AnyObject) {
         let navVC = splitViewController?.viewControllers[1] as? UINavigationController
